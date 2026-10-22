@@ -2,10 +2,11 @@ import crypto from "crypto";
 
 import { cookies } from "next/headers";
 
-import { and, eq } from "drizzle-orm";
+import { and, eq, gt } from "drizzle-orm";
 
 import { db } from "@/db";
 import { sessions } from "@/db/schema";
+import { getCurrentUser } from "./current-user";
 
 export const AUTH_COOKIE = "pyrne_session";
 
@@ -62,6 +63,9 @@ export async function createSession(
     expiresAt,
   };
 }
+
+
+export const getSessionUser = getCurrentUser
 
 export async function destroySession() {
   const cookieStore = await cookies();

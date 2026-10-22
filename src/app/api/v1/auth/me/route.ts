@@ -5,15 +5,12 @@ import {
 import {
   getSessionToken,
 } from "@/lib/auth/cookies";
+import { getSessionUser } from "@/lib/auth/session";
 
-import {
-  getSessionUser,
-} from "@/lib/auth/session";
 
 export async function GET() {
   try {
-    const token =
-      await getSessionToken();
+    const token = await getSessionToken();
 
     if (!token) {
       return NextResponse.json(
@@ -25,10 +22,7 @@ export async function GET() {
       );
     }
 
-    const result =
-      await getSessionUser(
-        token,
-      );
+    const result = await getSessionUser()
 
     if (!result) {
       return NextResponse.json(
@@ -40,9 +34,7 @@ export async function GET() {
       );
     }
 
-    const {
-      user,
-    } = result;
+    const user = result;
 
     return NextResponse.json({
       data: {
