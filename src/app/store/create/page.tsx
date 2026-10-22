@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import {
-  createStore,
+  createAdminStore as createStore,
 } from "@/lib/store-admin-api";
 
 import { Button } from "@/components/ui/button";
